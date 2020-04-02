@@ -1,0 +1,5 @@
+pattern: ^%{DOVECOT}$
+data: "lmtp(1440447): Connect from local"
+results:
+    "[dovecot][protocol]": "lmtp"
+    "[dovecot][mpid]": 1440447
