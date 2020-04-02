@@ -1,0 +1,7 @@
+pattern: ^%{DOVECOT}$
+data: "imap-login: Maximum number of connections from user+IP exceeded (mail_max_userip_connections=2): user=<user@example.org>, method=PLAIN, rip=192.0.2.45, lip=192.0.2.1, TLS, session=<ZO1qp0+iOPxZAvmV>"
+results:
+    "[dovecot][protocol]": "imap"
+    "[dovecot][session]": "ZO1qp0+iOPxZAvmV"
+    "[dovecot][disconnect_reason]": "Maximum number of connections from user+IP exceeded (mail_max_userip_connections=2)"
+    "[dovecot][keyvalue_data]": "user=<user@example.org>, method=PLAIN, rip=192.0.2.45, lip=192.0.2.1"

@@ -1,0 +1,10 @@
+pattern: ^%{DOVECOT}$
+data: "lmtp(user@example.org)<1424580><6u4HADnlhV7EvBUAnSVX2A>: msgid=<NM61F22CF1C007D32A6PFO_P@example.org>: saved mail to INBOX"
+results:
+    "[dovecot][protocol]": "lmtp"
+    "[dovecot][mpid]": 1424580
+    "[dovecot][user]": "user@example.org"
+    "[dovecot][session]": "6u4HADnlhV7EvBUAnSVX2A"
+    "[dovecot][msgid]": "NM61F22CF1C007D32A6PFO_P@example.org"
+    "[dovecot][action]": "saved"
+    "[dovecot][mailbox]": "INBOX"

@@ -1,0 +1,6 @@
+pattern: ^%{DOVECOT}$
+data: "lmtp(1443661): Disconnect from local: Client has quit the connection (state=READY)"
+results:
+    "[dovecot][protocol]": "lmtp"
+    "[dovecot][mpid]": 1443661
+    "[dovecot][disconnect_reason]": "Client has quit the connection (state=READY)"

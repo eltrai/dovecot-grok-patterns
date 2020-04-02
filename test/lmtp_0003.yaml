@@ -1,0 +1,10 @@
+pattern: ^%{DOVECOT}$
+data: "lmtp(user@example.org)<1444380><yFp9GDfzhV4cChYAnSVX2A>: sieve: msgid=<040a01d608f8$e1c9aad0$a55d0070$@example.org>: fileinto action: stored mail into mailbox 'Spam'"
+results:
+    "[dovecot][protocol]": "lmtp"
+    "[dovecot][mpid]": 1444380
+    "[dovecot][user]": "user@example.org"
+    "[dovecot][session]": "yFp9GDfzhV4cChYAnSVX2A"
+    "[dovecot][msgid]": "040a01d608f8$e1c9aad0$a55d0070$@example.org"
+    "[dovecot][action]": "stored"
+    "[dovecot][mailbox]": "Spam"

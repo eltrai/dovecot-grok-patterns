@@ -1,0 +1,5 @@
+pattern: ^%{DOVECOT}$
+data: "master: Warning: Killed with signal 15 (by pid=1324546 uid=0 code=kill)"
+results:
+    "[dovecot][message]": "Killed with signal 15 (by pid=1324546 uid=0 code=kill)"
+    "[dovecot][loglevel]": "Warning"

@@ -1,0 +1,6 @@
+pattern: ^%{DOVECOT}$
+data: "imap-login: Login: user=<user@example.org>, method=PLAIN, rip=192.0.2.43, lip=192.0.2.1, mpid=1448158, TLS, session=<N7MXlE+iUvFaBAGj>"
+results:
+    "[dovecot][protocol]": "imap"
+    "[dovecot][session]": "N7MXlE+iUvFaBAGj"
+    "[dovecot][keyvalue_data]": "user=<user@example.org>, method=PLAIN, rip=192.0.2.43, lip=192.0.2.1, mpid=1448158"

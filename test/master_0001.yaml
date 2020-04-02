@@ -1,0 +1,4 @@
+pattern: ^%{DOVECOT}$
+data: "master: Dovecot v2.3.10 (0da0eff44) starting up for imap, sieve, lmtp"
+results:
+    "[dovecot][message]": "Dovecot v2.3.10 (0da0eff44) starting up for imap, sieve, lmtp"

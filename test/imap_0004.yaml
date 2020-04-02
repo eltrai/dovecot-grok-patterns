@@ -1,0 +1,7 @@
+pattern: ^%{DOVECOT}$
+data: "imap-login: Disconnected (auth failed, 1 attempts in 2 secs): user=<user@example.org>, method=PLAIN, rip=::1, lip=::1, TLS, session=<Ae4t/ECiVMoAAAAAAAAAAAAAAAAAAAAB>"
+results:
+    "[dovecot][protocol]": "imap"
+    "[dovecot][session]": "Ae4t/ECiVMoAAAAAAAAAAAAAAAAAAAAB"
+    "[dovecot][disconnect_reason]": "Disconnected (auth failed, 1 attempts in 2 secs)"
+    "[dovecot][keyvalue_data]": "user=<user@example.org>, method=PLAIN, rip=::1, lip=::1"
