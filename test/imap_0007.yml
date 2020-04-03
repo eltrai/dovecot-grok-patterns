@@ -1,0 +1,8 @@
+pattern: ^%{DOVECOT}$
+data: "imap-login: Disconnected: Inactivity (no auth attempts in 180 secs): user=<>, rip=192.0.2.11, lip=192.0.2.12, TLS handshaking, session=<VxmfaFiiTOlZAvmV>"
+results:
+    "[dovecot][protocol]": "imap"
+    "[dovecot][session]": "VxmfaFiiTOlZAvmV"
+    "[dovecot][tls_message]": "handshaking"
+    "[dovecot][disconnect_reason]": "Inactivity (no auth attempts in 180 secs)"
+    "[dovecot][keyvalue_data]": "user=<>, rip=192.0.2.11, lip=192.0.2.12"

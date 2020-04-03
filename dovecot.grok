@@ -20,7 +20,8 @@ DOVECOT_STORE_MAIL %{STORED:[dovecot][action]} mail into mailbox '%{DATA:[doveco
 DOVECOT_MASTER master: (%{LOGLEVEL:[dovecot][loglevel]}: )?%{GREEDYDATA:[dovecot][message]}
 
 # Login template
-DOVECOT_LOGIN %{DOVECOT_PROTOCOL:[dovecot][protocol]}-login: (Login|%{GREEDYDATA_NO_COLON:[dovecot][disconnect_reason]}): %{GREEDYDATA:[dovecot][keyvalue_data]}, TLS(: %{GREEDYDATA_NO_COMMA:[dovecot][tls_message]})?, session=<%{DATA:[dovecot][session]}>
+DOVECOT_DISCONNECT_REASON (Disconnected: %{GREEDYDATA_NO_COLON:[dovecot][disconnect_reason]}|Disconnected \(%{GREEDYDATA_NO_COLON:[dovecot][disconnect_reason]}\)|%{GREEDYDATA_NO_COLON:[dovecot][disconnect_reason]})
+DOVECOT_LOGIN %{DOVECOT_PROTOCOL:[dovecot][protocol]}-login: (Login|%{DOVECOT_DISCONNECT_REASON}): %{DATA:[dovecot][keyvalue_data]}, (TLS(:? %{GREEDYDATA_NO_COMMA:[dovecot][tls_message]})?, )?session=<%{DATA:[dovecot][session]}>
 
 # IMAP template
 DOVECOT_IMAP_STATISTICS in=%{INT} out=%{INT}%{GREEDYDATA_NO_COLON}$
@@ -30,10 +31,9 @@ DOVECOT_IMAP %{IMAP:[dovecot][protocol]}%{DOVECOT_PREFIX} %{GREEDYDATA:[dovecot]
 DOVECOT_LMTP_MESSAGE_CONNECT Connect from local
 DOVECOT_LMTP_MESSAGE_DISCONNECT Disconnect from local: %{GREEDYDATA:[dovecot][disconnect_reason]}
 DOVECOT_LMTP_MESSAGE_SAVED msgid=<%{DATA:[dovecot][msgid]}>: %{DOVECOT_SAVED_MAIL}
-DOVECOT_LMTP_MESSAGE_SIEVE sieve: msgid=<%{DATA:[dovecot][msgid]}>: (%{GREEDYDATA}: )?%{DOVECOT_STORE_MAIL}
+DOVECOT_LMTP_MESSAGE_SIEVE sieve: msgid=(\? )?<%{DATA:[dovecot][msgid]}>: (%{GREEDYDATA}: )?%{DOVECOT_STORE_MAIL}
 DOVECOT_LMTP_MESSAGE %{DOVECOT_LMTP_MESSAGE_CONNECT}|%{DOVECOT_LMTP_MESSAGE_DISCONNECT}|%{DOVECOT_LMTP_MESSAGE_SIEVE}|%{DOVECOT_LMTP_MESSAGE_SAVED}
 DOVECOT_LMTP %{LMTP:[dovecot][protocol]}%{DOVECOT_PREFIX} %{DOVECOT_LMTP_MESSAGE}
 
 # Everything together
 DOVECOT %{DOVECOT_MASTER}|%{DOVECOT_LOGIN}|%{DOVECOT_IMAP}|%{DOVECOT_LMTP}
-

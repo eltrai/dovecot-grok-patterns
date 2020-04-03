@@ -1,0 +1,7 @@
+pattern: ^%{DOVECOT}$
+data: "imap-login: Disconnected: Too many invalid commands (no auth attempts in 0 secs): user=<>, rip=192.0.2.4, lip=192.0.2.111, session=<MD9B9FyivNXA8exM>"
+results:
+    "[dovecot][protocol]": "imap"
+    "[dovecot][session]": "MD9B9FyivNXA8exM"
+    "[dovecot][disconnect_reason]": "Too many invalid commands (no auth attempts in 0 secs)
+    "[dovecot][keyvalue_data]": "user=<>, rip=192.0.2.4, lip=192.0.2.111"

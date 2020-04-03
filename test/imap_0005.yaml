@@ -3,6 +3,6 @@ data: "imap-login: Disconnected (no auth attempts in 6 secs): user=<user@example
 results:
     "[dovecot][protocol]": "imap"
     "[dovecot][session]": "noFhgk2ipdpaBAGj"
-    "[dovecot][disconnect_reason]": "Disconnected (no auth attempts in 6 secs)"
+    "[dovecot][disconnect_reason]": "no auth attempts in 6 secs"
     "[dovecot][tls_message]": "read(size=448) failed: Connection reset by peer"
     "[dovecot][keyvalue_data]": "user=<user@example.org>, rip=192.0.2.100, lip=192.0.2.4"
