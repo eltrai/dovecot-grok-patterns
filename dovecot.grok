@@ -29,8 +29,8 @@ DOVECOT_IMAP_STATISTICS in=%{INT} out=%{INT}%{GREEDYDATA_NO_COLON}$
 DOVECOT_IMAP %{IMAP:[dovecot][protocol]}%{DOVECOT_PREFIX} %{GREEDYDATA:[dovecot][disconnect_reason]} %{DOVECOT_IMAP_STATISTICS:[dovecot][keyvalue_data]}
 
 # LMTP template
-DOVECOT_LMTP_MESSAGE_CONNECT Connect from local
-DOVECOT_LMTP_MESSAGE_DISCONNECT Disconnect from local: %{GREEDYDATA:[dovecot][disconnect_reason]}
+DOVECOT_LMTP_MESSAGE_CONNECT Connect from (local|%{IP:[dovecot][rip]})
+DOVECOT_LMTP_MESSAGE_DISCONNECT Disconnect from (local|%{IP:[dovecot][rip]}): %{GREEDYDATA:[dovecot][disconnect_reason]}
 DOVECOT_LMTP_MESSAGE_SAVED msgid=<?%{GREEDYDATA_RESTRICTIVE:[dovecot][msgid]}>?: %{DOVECOT_SAVED_MAIL}
 DOVECOT_LMTP_MESSAGE_SIEVE sieve: msgid=(\? )?<?%{GREEDYDATA_RESTRICTIVE:[dovecot][msgid]}>?: (%{GREEDYDATA}: )?%{DOVECOT_STORE_MAIL}
 DOVECOT_LMTP_MESSAGE %{DOVECOT_LMTP_MESSAGE_CONNECT}|%{DOVECOT_LMTP_MESSAGE_DISCONNECT}|%{DOVECOT_LMTP_MESSAGE_SIEVE}|%{DOVECOT_LMTP_MESSAGE_SAVED}

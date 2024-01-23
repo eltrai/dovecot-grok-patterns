@@ -1,0 +1,6 @@
+pattern: ^%{DOVECOT}$
+data: "lmtp(1440447): Connect from 192.0.2.43"
+results:
+    "[dovecot][protocol]": "lmtp"
+    "[dovecot][mpid]": 1440447
+    "[dovecot][rip]": "192.0.2.43"

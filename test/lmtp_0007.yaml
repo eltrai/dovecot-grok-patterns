@@ -1,0 +1,7 @@
+pattern: ^%{DOVECOT}$
+data: "lmtp(1443661): Disconnect from 192.0.2.43: Logged out (state=READY)"
+results:
+    "[dovecot][protocol]": "lmtp"
+    "[dovecot][mpid]": 1443661
+    "[dovecot][disconnect_reason]": "Logged out (state=READY)"
+    "[dovecot][rip]": "192.0.2.43"
