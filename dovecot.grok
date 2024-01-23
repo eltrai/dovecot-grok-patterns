@@ -2,6 +2,7 @@
 GREEDYDATA_NO_COLON [^:]*
 GREEDYDATA_NO_COMMA [^,]*
 GREEDYDATA_RESTRICTIVE [^<>: ,]*
+EMAILORUSER %{EMAILADDRESS}|%{USER}
 
 # Keywords
 STORED stored
@@ -11,7 +12,7 @@ LMTP lmtp
 
 # General patterns
 DOVECOT_PROTOCOL %{IMAP}|%{LMTP}
-DOVECOT_AUTHENTICATED_PREFIX \(%{EMAILADDRESS:[dovecot][user]}\)<%{INT:[dovecot][mpid]}><%{DATA:[dovecot][session]}>:
+DOVECOT_AUTHENTICATED_PREFIX \(%{EMAILORUSER:[dovecot][user]}\)<%{INT:[dovecot][mpid]}><%{DATA:[dovecot][session]}>:
 DOVECOT_ANONYMOUS_PREFIX \(%{INT:[dovecot][mpid]}\):
 DOVECOT_PREFIX %{DOVECOT_AUTHENTICATED_PREFIX}|%{DOVECOT_ANONYMOUS_PREFIX}
 DOVECOT_SAVED_MAIL %{SAVED:[dovecot][action]} mail to %{DATA:[dovecot][mailbox]}
