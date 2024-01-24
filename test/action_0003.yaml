@@ -1,0 +1,10 @@
+pattern: ^%{DOVECOT}$
+data: "imap(user@example.org)<12345><Sessi+0n>: copy from INBOX: box=Trash, uid=281683, msgid=<msg1d@example.org>, size=15890"
+results:
+    "[dovecot][protocol]": "imap"
+    "[dovecot][user]": "user@example.org"
+    "[dovecot][mpid]": "12345"
+    "[dovecot][session]": "Sessi+0n"
+    "[dovecot][action]": "copy"
+    "[dovecot][frombox]": "INBOX"
+    "[dovecot][keyvalue_data]": "box=Trash, uid=281683, msgid=<msg1d@example.org>, size=15890"
