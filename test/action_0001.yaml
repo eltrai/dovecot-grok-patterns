@@ -1,0 +1,9 @@
+pattern: ^%{DOVECOT}$
+data: "lmtp(user@example.org)<12345><Sessi+0n:R2>: save: box=INBOX, uid=258220, msgid=, size=220"
+results:
+    "[dovecot][protocol]": "lmtp"
+    "[dovecot][user]": "user@example.org"
+    "[dovecot][mpid]": "12345"
+    "[dovecot][session]": "Sessi+0n:R2"
+    "[dovecot][action]": "save"
+    "[dovecot][keyvalue_data]": "box=INBOX, uid=258220, msgid=, size=220"

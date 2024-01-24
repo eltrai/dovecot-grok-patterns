@@ -1,0 +1,9 @@
+pattern: ^%{DOVECOT}$
+data: "imap(user@example.org)<12345><Sessi+0n>: expunge: box=INBOX, uid=258224, msgid=<msg1d@example.org>, size=12345"
+results:
+    "[dovecot][protocol]": "imap"
+    "[dovecot][user]": "user@example.org"
+    "[dovecot][mpid]": "12345"
+    "[dovecot][session]": "Sessi+0n"
+    "[dovecot][action]": "expunge"
+    "[dovecot][keyvalue_data]": "box=INBOX, uid=258224, msgid=<msg1d@example.org>, size=12345"
