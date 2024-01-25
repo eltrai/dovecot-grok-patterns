@@ -1,0 +1,10 @@
+pattern: ^%{DOVECOT}$
+data: "lmtp(user@example.org)<12345><Sessi+0n:R2>: save: box=INBOX, uid=258220, msgid=, size=220"
+data: "imap(user@example.org)<12345><Sessi+0n>: delete: box=Drafts, uid=2713, msgid=<bd3a6292e6b5f5b1a6fdde7753edd808@fh-muenster.de>, size=7078"
+results:
+    "[dovecot][protocol]": "imap"
+    "[dovecot][user]": "user@example.org"
+    "[dovecot][mpid]": "12345"
+    "[dovecot][session]": "Sessi+0n"
+    "[dovecot][action]": "delete"
+    "[dovecot][keyvalue_data]": "box=Drafts, uid=2713, msgid=<bd3a6292e6b5f5b1a6fdde7753edd808@fh-muenster.de>, size=7078"

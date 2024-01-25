@@ -11,6 +11,7 @@ LMTP lmtp
 SAVE save
 EXPUNGE expunge
 COPY copy
+DELETE delete
 
 # General patterns
 DOVECOT_PROTOCOL %{IMAP}|%{LMTP}
@@ -40,7 +41,7 @@ DOVECOT_LMTP_MESSAGE %{DOVECOT_LMTP_MESSAGE_CONNECT}|%{DOVECOT_LMTP_MESSAGE_DISC
 DOVECOT_LMTP %{LMTP:[dovecot][protocol]}%{DOVECOT_PREFIX} %{DOVECOT_LMTP_MESSAGE}
 
 # Actions template
-DOVECOT_ACTIONS %{SAVE:[dovecot][action]}|%{EXPUNGE:[dovecot][action]}|%{COPY:[dovecot][action]} from %{DATA:[dovecot][frombox]}
+DOVECOT_ACTIONS %{SAVE:[dovecot][action]}|%{EXPUNGE:[dovecot][action]}|%{DELETE:[dovecot][action]}|%{COPY:[dovecot][action]} from %{DATA:[dovecot][frombox]}
 DOVECOT_ACTION %{DOVECOT_PROTOCOL:[dovecot][protocol]}%{DOVECOT_PREFIX} %{DOVECOT_ACTIONS}: %{DATA:[dovecot][keyvalue_data]}
 
 # Everything together
