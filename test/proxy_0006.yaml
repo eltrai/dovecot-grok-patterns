@@ -1,0 +1,11 @@
+pattern: ^%{DOVECOT}$
+data: "imap-login: proxy(user@domain.tld,10.0.30.1:300): Disconnected by proxy: Process shutting down: user=<user@domain.tld>, method=PLAIN, rip=10.0.10.1, lip=10.0.20.1, TLS, session=<23ndsSD/+32GaGsp>"
+results:
+    "[dovecot][protocol]": "imap"
+    "[dovecot][event]": "proxy"
+    "[dovecot][proxy][ip]": "10.0.30.1"
+    "[dovecot][proxy][port]": "300"
+    "[dovecot][disconnect_side]": "proxy"
+    "[dovecot][disconnect_reason]": "Process shutting down"
+    "[dovecot][keyvalue_data]": "user=<user@domain.tld>, method=PLAIN, rip=10.0.10.1, lip=10.0.20.1"
+    "[dovecot][session]": "23ndsSD/+32GaGsp"
