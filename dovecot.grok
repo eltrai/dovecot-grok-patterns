@@ -7,10 +7,11 @@ GREEDYDATA_RESTRICTIVE [^<>: ,]*
 STORED stored
 SAVED saved
 IMAP imap
+SIEVE managesieve
 LMTP lmtp
 
 # General patterns
-DOVECOT_PROTOCOL %{IMAP}|%{LMTP}
+DOVECOT_PROTOCOL %{IMAP}|%{SIEVE}|%{LMTP}
 DOVECOT_AUTHENTICATED_PREFIX \(%{EMAILADDRESS:[dovecot][user]}\)<%{INT:[dovecot][mpid]}><%{DATA:[dovecot][session]}>:
 DOVECOT_ANONYMOUS_PREFIX \(%{INT:[dovecot][mpid]}\):
 DOVECOT_PREFIX %{DOVECOT_AUTHENTICATED_PREFIX}|%{DOVECOT_ANONYMOUS_PREFIX}
