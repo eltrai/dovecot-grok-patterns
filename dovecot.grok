@@ -8,6 +8,7 @@ EMAILORUSER %{EMAILADDRESS}|%{USER}
 STORED stored
 SAVED saved
 IMAP imap
+POP3 pop3
 LMTP lmtp
 SAVE save
 EXPUNGE expunge
@@ -15,7 +16,7 @@ COPY copy
 DELETE delete
 
 # General patterns
-DOVECOT_PROTOCOL %{IMAP}|%{LMTP}
+DOVECOT_PROTOCOL %{IMAP}|%{POP3}|%{LMTP}
 DOVECOT_AUTHENTICATED_PREFIX \(%{EMAILORUSER:[dovecot][user]}\)<%{INT:[dovecot][mpid]}><%{DATA:[dovecot][session]}>:
 DOVECOT_ANONYMOUS_PREFIX \(%{INT:[dovecot][mpid]}\):
 DOVECOT_PREFIX %{DOVECOT_AUTHENTICATED_PREFIX}|%{DOVECOT_ANONYMOUS_PREFIX}

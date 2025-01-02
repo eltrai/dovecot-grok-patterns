@@ -1,0 +1,7 @@
+pattern: ^%{DOVECOT}$
+data: "pop3-login: Login: user=<user>, method=PLAIN, rip=::2, lip=::1, mpid=12345, TLS, session=<Sessi+0n>"
+results:
+    "[dovecot][protocol]": "pop3"
+    "[dovecot][session]": "Sessi+0n"
+    "[dovecot][keyvalue_data]": "user=<user>, method=PLAIN, rip=::2, lip=::1, mpid=12345"
+
