@@ -33,7 +33,7 @@ DOVECOT_LOGIN %{DOVECOT_PROTOCOL:[dovecot][protocol]}-login: (Login|%{DOVECOT_DI
 
 # IMAP template
 DOVECOT_IMAP_STATISTICS in=%{INT} out=%{INT}%{GREEDYDATA_NO_COLON}$
-DOVECOT_IMAP %{IMAP:[dovecot][protocol]}%{DOVECOT_PREFIX} %{GREEDYDATA:[dovecot][disconnect_reason]} %{DOVECOT_IMAP_STATISTICS:[dovecot][keyvalue_data]}
+DOVECOT_IMAP %{IMAP:[dovecot][protocol]}%{DOVECOT_PREFIX} Disconnected: %{GREEDYDATA:[dovecot][disconnect_reason]} %{DOVECOT_IMAP_STATISTICS:[dovecot][keyvalue_data]}
 
 # LMTP template
 DOVECOT_LMTP_MESSAGE_CONNECT Connect from (local|%{IP:[dovecot][rip]})
