@@ -43,9 +43,13 @@ DOVECOT_LMTP_MESSAGE_SIEVE sieve: msgid=(\? )?<?%{GREEDYDATA_RESTRICTIVE:[doveco
 DOVECOT_LMTP_MESSAGE %{DOVECOT_LMTP_MESSAGE_CONNECT}|%{DOVECOT_LMTP_MESSAGE_DISCONNECT}|%{DOVECOT_LMTP_MESSAGE_SIEVE}|%{DOVECOT_LMTP_MESSAGE_SAVED}
 DOVECOT_LMTP %{LMTP:[dovecot][protocol]}%{DOVECOT_PREFIX} %{DOVECOT_LMTP_MESSAGE}
 
+# Sieve template
+DOVECOT_SIEVE_STATISTICS bytes=%{INT}/%{INT}
+DOVECOT_SIEVE %{SIEVE:[dovecot][protocol]}%{DOVECOT_PREFIX} Disconnected: %{GREEDYDATA:[dovecot][disconnect_reason]} %{DOVECOT_SIEVE_STATISTICS:[dovecot][keyvalue_data]}
+
 # Actions template
 DOVECOT_ACTIONS %{SAVE:[dovecot][action]}|%{EXPUNGE:[dovecot][action]}|%{DELETE:[dovecot][action]}|%{COPY:[dovecot][action]} from %{DATA:[dovecot][frombox]}
 DOVECOT_ACTION %{DOVECOT_PROTOCOL:[dovecot][protocol]}%{DOVECOT_PREFIX} %{DOVECOT_ACTIONS}: %{DATA:[dovecot][keyvalue_data]}
 
 # Everything together
-DOVECOT %{DOVECOT_MASTER}|%{DOVECOT_LOGIN}|%{DOVECOT_IMAP}|%{DOVECOT_LMTP}|%{DOVECOT_ACTION}
+DOVECOT %{DOVECOT_MASTER}|%{DOVECOT_LOGIN}|%{DOVECOT_IMAP}|%{DOVECOT_LMTP}|%{DOVECOT_SIEVE}|%{DOVECOT_ACTION}

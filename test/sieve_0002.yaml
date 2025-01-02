@@ -1,0 +1,9 @@
+pattern: ^%{DOVECOT}$
+data: "managesieve(user@example.org)<301498><azeY270qju0AAAAAAAAAAAAAAAAAAAAB>: Disconnected: Logged out bytes=49/6786"
+results:
+    "[dovecot][protocol]": "managesieve"
+    "[dovecot][user]": "user@example.org"
+    "[dovecot][mpid]": "301498"
+    "[dovecot][session]": "azeY270qju0AAAAAAAAAAAAAAAAAAAAB"
+    "[dovecot][disconnect_reason]": "Logged out"
+    "[dovecot][keyvalue_data]": "bytes=49/6786"
