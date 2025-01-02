@@ -2,6 +2,7 @@
 GREEDYDATA_NO_COLON [^:]*
 GREEDYDATA_NO_COMMA [^,]*
 GREEDYDATA_RESTRICTIVE [^<>: ,]*
+EMAILORUSER %{EMAILADDRESS}|%{USER}
 
 # Keywords
 STORED stored
@@ -9,10 +10,14 @@ SAVED saved
 IMAP imap
 POP3 pop3
 LMTP lmtp
+SAVE save
+EXPUNGE expunge
+COPY copy
+DELETE delete
 
 # General patterns
 DOVECOT_PROTOCOL %{IMAP}|%{POP3}|%{LMTP}
-DOVECOT_AUTHENTICATED_PREFIX \(%{EMAILADDRESS:[dovecot][user]}\)<%{INT:[dovecot][mpid]}><%{DATA:[dovecot][session]}>:
+DOVECOT_AUTHENTICATED_PREFIX \(%{EMAILORUSER:[dovecot][user]}\)<%{INT:[dovecot][mpid]}><%{DATA:[dovecot][session]}>:
 DOVECOT_ANONYMOUS_PREFIX \(%{INT:[dovecot][mpid]}\):
 DOVECOT_PREFIX %{DOVECOT_AUTHENTICATED_PREFIX}|%{DOVECOT_ANONYMOUS_PREFIX}
 DOVECOT_SAVED_MAIL %{SAVED:[dovecot][action]} mail to %{DATA:[dovecot][mailbox]}
@@ -30,12 +35,16 @@ DOVECOT_IMAP_STATISTICS in=%{INT} out=%{INT}%{GREEDYDATA_NO_COLON}$
 DOVECOT_IMAP %{IMAP:[dovecot][protocol]}%{DOVECOT_PREFIX} %{GREEDYDATA:[dovecot][disconnect_reason]} %{DOVECOT_IMAP_STATISTICS:[dovecot][keyvalue_data]}
 
 # LMTP template
-DOVECOT_LMTP_MESSAGE_CONNECT Connect from local
-DOVECOT_LMTP_MESSAGE_DISCONNECT Disconnect from local: %{GREEDYDATA:[dovecot][disconnect_reason]}
+DOVECOT_LMTP_MESSAGE_CONNECT Connect from (local|%{IP:[dovecot][rip]})
+DOVECOT_LMTP_MESSAGE_DISCONNECT Disconnect from (local|%{IP:[dovecot][rip]}): %{GREEDYDATA:[dovecot][disconnect_reason]}
 DOVECOT_LMTP_MESSAGE_SAVED msgid=<?%{GREEDYDATA_RESTRICTIVE:[dovecot][msgid]}>?: %{DOVECOT_SAVED_MAIL}
 DOVECOT_LMTP_MESSAGE_SIEVE sieve: msgid=(\? )?<?%{GREEDYDATA_RESTRICTIVE:[dovecot][msgid]}>?: (%{GREEDYDATA}: )?%{DOVECOT_STORE_MAIL}
 DOVECOT_LMTP_MESSAGE %{DOVECOT_LMTP_MESSAGE_CONNECT}|%{DOVECOT_LMTP_MESSAGE_DISCONNECT}|%{DOVECOT_LMTP_MESSAGE_SIEVE}|%{DOVECOT_LMTP_MESSAGE_SAVED}
 DOVECOT_LMTP %{LMTP:[dovecot][protocol]}%{DOVECOT_PREFIX} %{DOVECOT_LMTP_MESSAGE}
 
+# Actions template
+DOVECOT_ACTIONS %{SAVE:[dovecot][action]}|%{EXPUNGE:[dovecot][action]}|%{DELETE:[dovecot][action]}|%{COPY:[dovecot][action]} from %{DATA:[dovecot][frombox]}
+DOVECOT_ACTION %{DOVECOT_PROTOCOL:[dovecot][protocol]}%{DOVECOT_PREFIX} %{DOVECOT_ACTIONS}: %{DATA:[dovecot][keyvalue_data]}
+
 # Everything together
-DOVECOT %{DOVECOT_MASTER}|%{DOVECOT_LOGIN}|%{DOVECOT_IMAP}|%{DOVECOT_LMTP}
+DOVECOT %{DOVECOT_MASTER}|%{DOVECOT_LOGIN}|%{DOVECOT_IMAP}|%{DOVECOT_LMTP}|%{DOVECOT_ACTION}

@@ -12,10 +12,10 @@ require 'yaml'
 # It creates test cases from all yaml files in the current
 # directory.
 
-class TestGrokPatterns < MiniTest::Test
+class TestGrokPatterns < Minitest::Test
 
     @@test_dir = File.dirname(__FILE__)
-    @@upstream_pattern_dir = @@test_dir + '/logstash-patterns-core/patterns'
+    @@upstream_pattern_dir = @@test_dir + '/logstash-patterns-core/patterns/ecs-v1'
     @@local_pattern_dir = File.dirname(File.expand_path(@@test_dir))
 
     # Prepare a grok object.
