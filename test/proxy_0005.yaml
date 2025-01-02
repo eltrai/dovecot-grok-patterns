@@ -1,0 +1,14 @@
+pattern: ^%{DOVECOT}$
+data: "imap-login: proxy(user@domain.tld,10.0.30.1:300): Disconnected by server: read(size=1972) failed: Connection reset by peer (0s idle, in=697, out=2053): user=<user@domain.tld>, method=PLAIN, rip=10.0.10.1, lip=10.0.20.1, TLS, session=<23ndsSD/+32GaGsp>"
+results:
+    "[dovecot][protocol]": "imap"
+    "[dovecot][event]": "proxy"
+    "[dovecot][proxy][ip]": "10.0.30.1"
+    "[dovecot][proxy][port]": "300"
+    "[dovecot][disconnect_side]": "server"
+    "[dovecot][disconnect_reason]": "read(size=1972) failed: Connection reset by peer"
+    "[dovecot][idle_secs]": "0"
+    "[dovecot][bytes_received]": "697"
+    "[dovecot][bytes_sent]": "2053"
+    "[dovecot][keyvalue_data]": "user=<user@domain.tld>, method=PLAIN, rip=10.0.10.1, lip=10.0.20.1"
+    "[dovecot][session]": "23ndsSD/+32GaGsp"

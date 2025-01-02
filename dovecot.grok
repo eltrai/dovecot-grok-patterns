@@ -11,6 +11,9 @@ IMAP imap
 SIEVE managesieve
 POP3 pop3
 LMTP lmtp
+CLIENT client
+SERVER server
+PROXY proxy
 SAVE save
 EXPUNGE expunge
 COPY copy
@@ -29,7 +32,13 @@ DOVECOT_MASTER master: (%{LOGLEVEL:[dovecot][loglevel]}: )?%{GREEDYDATA:[dovecot
 
 # Login template
 DOVECOT_DISCONNECT_REASON (Disconnected: %{GREEDYDATA_NO_COLON:[dovecot][disconnect_reason]}|Disconnected \(%{GREEDYDATA_NO_COLON:[dovecot][disconnect_reason]}\)|%{GREEDYDATA_NO_COLON:[dovecot][disconnect_reason]})
-DOVECOT_LOGIN %{DOVECOT_PROTOCOL:[dovecot][protocol]}-login: (Login|%{DOVECOT_DISCONNECT_REASON}): %{DATA:[dovecot][keyvalue_data]}, (TLS(:? %{GREEDYDATA_NO_COMMA:[dovecot][tls_message]})?, )?session=<%{DATA:[dovecot][session]}>
+DOVECOT_LOGIN %{DOVECOT_PROTOCOL:[dovecot][protocol]}-login: (Login|%{DOVECOT_DISCONNECT_REASON}|%{DOVECOT_PROXY}): %{DATA:[dovecot][keyvalue_data]}, (TLS(:? %{GREEDYDATA_NO_COMMA:[dovecot][tls_message]})?, )?session=<%{DATA:[dovecot][session]}>
+
+# Proxy template
+DOVECOT_PROXY_DISCONNECT_SIDE %{SERVER}|%{CLIENT}|%{PROXY}
+DOVECOT_PROXY_FINISH Disconnected by %{DOVECOT_PROXY_DISCONNECT_SIDE:[dovecot][disconnect_side]}(: )?(%{GREEDYDATA_NO_COMMA:[dovecot][disconnect_reason]})?( \(%{INT:[dovecot][idle_secs]}s idle, in=%{INT:[dovecot][bytes_received]}, out=%{INT:[dovecot][bytes_sent]}(\+%{INT})?(, client output blocked)?\))?
+DOVECOT_PROXY_START Started proxying to \<%{IP}\>( as user %{EMAILADDRESS:[dovecot][real_user]})? \(master %{DATA:[dovecot][master_user]}\) \(%{NUMBER:[dovecot][duration]} secs(, %{INT:[dovecot][reconnects]} reconnects)?\)
+DOVECOT_PROXY %{PROXY:[dovecot][event]}\(%{EMAILADDRESS},%{IP:[dovecot][proxy][ip]}:%{INT:[dovecot][proxy][port]}\): (%{DOVECOT_PROXY_START}|%{DOVECOT_PROXY_FINISH})
 
 # IMAP template
 DOVECOT_IMAP_STATISTICS in=%{INT} out=%{INT}%{GREEDYDATA_NO_COLON}$
