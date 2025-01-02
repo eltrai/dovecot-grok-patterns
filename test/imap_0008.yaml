@@ -1,8 +1,8 @@
 pattern: ^%{DOVECOT}$
-data: "imap(user@example.org)<1446517><l/g1gk+iMfBaBAGj>: Disconnected: Logged out in=34 out=534 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0"
+data: "imap(user)<1446517><l/g1gk+iMfBaBAGj>: Disconnected: Logged out in=34 out=534 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0"
 results:
     "[dovecot][protocol]": "imap"
-    "[dovecot][user]": "user@example.org"
+    "[dovecot][user]": "user"
     "[dovecot][mpid]": "1446517"
     "[dovecot][session]": "l/g1gk+iMfBaBAGj"
     "[dovecot][disconnect_reason]": "Logged out"
