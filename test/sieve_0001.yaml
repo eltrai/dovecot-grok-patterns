@@ -1,0 +1,6 @@
+pattern: ^%{DOVECOT}$
+data: "managesieve-login: Login: user=<user@domain.tld>, method=PLAIN, rip=10.0.10.1, lip=10.0.20.1, mpid=56346, session=<A+2/nMop3SGssgf1>"
+results:
+    "[dovecot][protocol]": "managesieve"
+    "[dovecot][session]": "A+2/nMop3SGssgf1"
+    "[dovecot][keyvalue_data]": "user=<user@domain.tld>, method=PLAIN, rip=10.0.10.1, lip=10.0.20.1, mpid=56346"
